@@ -1,0 +1,496 @@
+﻿<Window x:Class="Vision_Login.IO"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vision_Login"
+        mc:Ignorable="d"
+        Title="IO" Height="900" Width="1350"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterOwner">
+
+    <Border Background="#0D1117" CornerRadius="12"
+            BorderBrush="#1E3A5F" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="30" ShadowDepth="0" Color="#000000" Opacity="0.6"/>
+        </Border.Effect>
+
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <!-- 헤더 -->
+                <RowDefinition Height="93*"/>
+                <!-- 본문 -->
+            </Grid.RowDefinitions>
+
+            <!-- 헤더 -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="&#xE8AB;" FontFamily="Segoe MDL2 Assets"
+                               Foreground="White" FontSize="25" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="I/O" Foreground="White"
+                               FontSize="25" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,24,0"/>
+                    <TextBlock Text="Status" Foreground="#888" FontSize="16"
+                               VerticalAlignment="Bottom" Margin="0,0,8,0"/>
+                    <Ellipse Width="14" Height="14" Fill="LimeGreen" VerticalAlignment="Bottom" Margin="0,0,6,0"/>
+                    <TextBlock Text="Connected" Foreground="LimeGreen"
+                               FontSize="16" VerticalAlignment="Bottom"/>
+                </StackPanel>
+
+                <Button Grid.Column="2" Content="✕" FontSize="25"
+                        Foreground="White" Background="Transparent"
+                        BorderThickness="0" Cursor="Hand"
+                        Click="btnClose_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="bd" Background="Transparent" CornerRadius="5">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="bd" Property="Background" Value="#253545"/>
+                                                <Setter Property="Foreground" Value="#FF4757"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+
+            <!-- 본문 -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <!-- Input -->
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                    <!-- Output -->
+                </Grid.ColumnDefinitions>
+
+                <!-- ── Input 패널 ── -->
+                <Border Grid.Column="0" Background="#131B26"
+                        BorderBrush="#1E3A5F" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!-- Input 헤더 -->
+                            <RowDefinition Height="*"/>
+                            <!-- IN1 + IN2 -->
+                        </Grid.RowDefinitions>
+
+                        <!-- Input 제목 -->
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,12">
+                            <Border Width="4" Background="#4A90D9" CornerRadius="2" Margin="0,0,10,0"/>
+                            <TextBlock Text="Input" Foreground="White" FontSize="30" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <!-- IN1 + IN2 나란히 -->
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- IN1 -->
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="IN1" Foreground="White"
+                                           FontSize="16" FontWeight="Bold" Margin="0,0,0,6"/>
+
+                                <!-- 컬럼 헤더 -->
+                                <Grid Grid.Row="1" Margin="0,0,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="65"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="No." Foreground="#888" FontSize="20"/>
+                                    <TextBlock Grid.Column="1" Text="Name" Foreground="#888" FontSize="20"/>
+                                    <TextBlock Grid.Column="2" Text="Status" Foreground="#888" FontSize="20" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Rectangle Grid.Row="1" Height="1" Fill="#1E3A5F" VerticalAlignment="Bottom" Margin="0,20,0,0"/>
+
+                                <!-- IN1 데이터 -->
+                                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel>
+                                        <!-- IN1-1 ~ IN1-16 -->
+                                        <ItemsControl>
+                                            <ItemsControl.Items>
+                                                <local:IOItem No="IN1-1"  Name="Input 1-1"  IsOn="True"/>
+                                                <local:IOItem No="IN1-2"  Name="Input 1-2"  IsOn="False"/>
+                                                <local:IOItem No="IN1-3"  Name="Input 1-3"  IsOn="True"/>
+                                                <local:IOItem No="IN1-4"  Name="Input 1-4"  IsOn="False"/>
+                                                <local:IOItem No="IN1-5"  Name="Input 1-5"  IsOn="True"/>
+                                                <local:IOItem No="IN1-6"  Name="Input 1-6"  IsOn="False"/>
+                                                <local:IOItem No="IN1-7"  Name="Input 1-7"  IsOn="True"/>
+                                                <local:IOItem No="IN1-8"  Name="Input 1-8"  IsOn="False"/>
+                                                <local:IOItem No="IN1-9"  Name="Input 1-9"  IsOn="True"/>
+                                                <local:IOItem No="IN1-10" Name="Input 1-10" IsOn="False"/>
+                                                <local:IOItem No="IN1-11" Name="Input 1-11" IsOn="True"/>
+                                                <local:IOItem No="IN1-12" Name="Input 1-12" IsOn="False"/>
+                                                <local:IOItem No="IN1-13" Name="Input 1-13" IsOn="True"/>
+                                                <local:IOItem No="IN1-14" Name="Input 1-14" IsOn="False"/>
+                                                <local:IOItem No="IN1-15" Name="Input 1-15" IsOn="True"/>
+                                                <local:IOItem No="IN1-16" Name="Input 1-16" IsOn="False"/>
+                                            </ItemsControl.Items>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="0,1">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="70"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="65"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="{Binding No}"
+                                                                   Foreground="White" FontSize="20" VerticalAlignment="Center" Padding="0,6"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Name}"
+                                                                   Foreground="White" FontSize="20" VerticalAlignment="Center"/>
+                                                        <Button Grid.Column="2"
+        Width="25" Height="25"
+        HorizontalAlignment="Center" VerticalAlignment="Center"
+        Background="Transparent" BorderThickness="0"
+        Cursor="Hand"
+        Tag="{Binding}"
+        Click="IOStatus_Click">
+                                                            <Button.Template>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <Ellipse Width="25" Height="25">
+                                                                        <Ellipse.Style>
+                                                                            <Style TargetType="Ellipse">
+                                                                                <Setter Property="Fill" Value="Red"/>
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding IsOn}" Value="True">
+                                                                                        <Setter Property="Fill" Value="LimeGreen"/>
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </Ellipse.Style>
+                                                                    </Ellipse>
+                                                                </ControlTemplate>
+                                                            </Button.Template>
+                                                        </Button>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+
+                            <!-- 구분선 -->
+                            <Border Grid.Column="1" Background="#1E3A5F"/>
+
+                            <!-- IN2 -->
+                            <Grid Grid.Column="2" Margin="12,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="IN2" Foreground="White"
+                                           FontSize="20" FontWeight="Bold" Margin="0,0,0,6"/>
+
+                                <Grid Grid.Row="1" Margin="0,0,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="65"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="No." Foreground="#888" FontSize="20"/>
+                                    <TextBlock Grid.Column="1" Text="Name" Foreground="#888" FontSize="20"/>
+                                    <TextBlock Grid.Column="2" Text="Status" Foreground="#888" FontSize="20" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Rectangle Grid.Row="1" Height="1" Fill="#1E3A5F" VerticalAlignment="Bottom" Margin="0,20,0,0"/>
+
+                                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel>
+                                        <ItemsControl>
+                                            <ItemsControl.Items>
+                                                <local:IOItem No="IN2-1"  Name="Input 2-1"  IsOn="True"/>
+                                                <local:IOItem No="IN2-2"  Name="Input 2-2"  IsOn="False"/>
+                                                <local:IOItem No="IN2-3"  Name="Input 2-3"  IsOn="True"/>
+                                                <local:IOItem No="IN2-4"  Name="Input 2-4"  IsOn="False"/>
+                                                <local:IOItem No="IN2-5"  Name="Input 2-5"  IsOn="True"/>
+                                                <local:IOItem No="IN2-6"  Name="Input 2-6"  IsOn="False"/>
+                                                <local:IOItem No="IN2-7"  Name="Input 2-7"  IsOn="True"/>
+                                                <local:IOItem No="IN2-8"  Name="Input 2-8"  IsOn="False"/>
+                                                <local:IOItem No="IN2-9"  Name="Input 2-9"  IsOn="True"/>
+                                                <local:IOItem No="IN2-10" Name="Input 2-10" IsOn="False"/>
+                                                <local:IOItem No="IN2-11" Name="Input 2-11" IsOn="True"/>
+                                                <local:IOItem No="IN2-12" Name="Input 2-12" IsOn="False"/>
+                                                <local:IOItem No="IN2-13" Name="Input 2-13" IsOn="True"/>
+                                                <local:IOItem No="IN2-14" Name="Input 2-14" IsOn="False"/>
+                                                <local:IOItem No="IN2-15" Name="Input 2-15" IsOn="True"/>
+                                                <local:IOItem No="IN2-16" Name="Input 2-16" IsOn="False"/>
+                                            </ItemsControl.Items>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="0,1">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="70"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="65"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="{Binding No}"
+                                                                   Foreground="White" FontSize="20" VerticalAlignment="Center" Padding="0,6"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Name}"
+                                                                   Foreground="White" FontSize="20" VerticalAlignment="Center"/>
+                                                        <Button Grid.Column="2"
+        Width="25" Height="25"
+        HorizontalAlignment="Center" VerticalAlignment="Center"
+        Background="Transparent" BorderThickness="0"
+        Cursor="Hand"
+        Tag="{Binding}"
+        Click="IOStatus_Click">
+                                                            <Button.Template>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <Ellipse Width="25" Height="25">
+                                                                        <Ellipse.Style>
+                                                                            <Style TargetType="Ellipse">
+                                                                                <Setter Property="Fill" Value="Red"/>
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding IsOn}" Value="True">
+                                                                                        <Setter Property="Fill" Value="LimeGreen"/>
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </Ellipse.Style>
+                                                                    </Ellipse>
+                                                                </ControlTemplate>
+                                                            </Button.Template>
+                                                        </Button>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <!-- ── Output 패널 ── -->
+                <Border Grid.Column="2" Background="#131B26"
+                        BorderBrush="#1E3A5F" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,12">
+                            <Border Width="4" Background="#4A90D9" CornerRadius="2" Margin="0,0,10,0"/>
+                            <TextBlock Text="Output" Foreground="White" FontSize="30" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- OUT1 -->
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="OUT1" Foreground="White"
+                                           FontSize="20" FontWeight="Bold" Margin="0,0,0,6"/>
+
+                                <Grid Grid.Row="1" Margin="0,0,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="65"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="No." Foreground="#888" FontSize="20"/>
+                                    <TextBlock Grid.Column="1" Text="Name" Foreground="#888" FontSize="20"/>
+                                    <TextBlock Grid.Column="2" Text="Status" Foreground="#888" FontSize="20" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Rectangle Grid.Row="1" Height="1" Fill="#1E3A5F" VerticalAlignment="Bottom" Margin="0,20,0,0"/>
+
+                                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel>
+                                        <ItemsControl>
+                                            <ItemsControl.Items>
+                                                <local:IOItem No="OUT1-1"  Name="Output 1-1"  IsOn="True"/>
+                                                <local:IOItem No="OUT1-2"  Name="Output 1-2"  IsOn="False"/>
+                                                <local:IOItem No="OUT1-3"  Name="Output 1-3"  IsOn="True"/>
+                                                <local:IOItem No="OUT1-4"  Name="Output 1-4"  IsOn="False"/>
+                                                <local:IOItem No="OUT1-5"  Name="Output 1-5"  IsOn="True"/>
+                                                <local:IOItem No="OUT1-6"  Name="Output 1-6"  IsOn="False"/>
+                                                <local:IOItem No="OUT1-7"  Name="Output 1-7"  IsOn="True"/>
+                                                <local:IOItem No="OUT1-8"  Name="Output 1-8"  IsOn="False"/>
+                                                <local:IOItem No="OUT1-9"  Name="Output 1-9"  IsOn="True"/>
+                                                <local:IOItem No="OUT1-10" Name="Output 1-10" IsOn="False"/>
+                                                <local:IOItem No="OUT1-11" Name="Output 1-11" IsOn="True"/>
+                                                <local:IOItem No="OUT1-12" Name="Output 1-12" IsOn="False"/>
+                                                <local:IOItem No="OUT1-13" Name="Output 1-13" IsOn="True"/>
+                                                <local:IOItem No="OUT1-14" Name="Output 1-14" IsOn="False"/>
+                                                <local:IOItem No="OUT1-15" Name="Output 1-15" IsOn="True"/>
+                                                <local:IOItem No="OUT1-16" Name="Output 1-16" IsOn="False"/>
+                                            </ItemsControl.Items>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="0,1">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="70"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="65"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="{Binding No}"
+                                                                   Foreground="White" FontSize="20" VerticalAlignment="Center" Padding="0,6"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Name}"
+                                                                   Foreground="White" FontSize="20" VerticalAlignment="Center"/>
+                                                        <Button Grid.Column="2"
+        Width="25" Height="25"
+        HorizontalAlignment="Center" VerticalAlignment="Center"
+        Background="Transparent" BorderThickness="0"
+        Cursor="Hand"
+        Tag="{Binding}"
+        Click="IOStatus_Click">
+                                                            <Button.Template>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <Ellipse Width="25" Height="25">
+                                                                        <Ellipse.Style>
+                                                                            <Style TargetType="Ellipse">
+                                                                                <Setter Property="Fill" Value="Red"/>
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding IsOn}" Value="True">
+                                                                                        <Setter Property="Fill" Value="LimeGreen"/>
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </Ellipse.Style>
+                                                                    </Ellipse>
+                                                                </ControlTemplate>
+                                                            </Button.Template>
+                                                        </Button>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+
+                            <Border Grid.Column="1" Background="#1E3A5F"/>
+
+                            <!-- OUT2 -->
+                            <Grid Grid.Column="2" Margin="12,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="OUT2" Foreground="White"
+                                           FontSize="20" FontWeight="Bold" Margin="0,0,0,6"/>
+
+                                <Grid Grid.Row="1" Margin="0,0,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="65"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="No." Foreground="#888" FontSize="20"/>
+                                    <TextBlock Grid.Column="1" Text="Name" Foreground="#888" FontSize="20"/>
+                                    <TextBlock Grid.Column="2" Text="Status" Foreground="#888" FontSize="20" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Rectangle Grid.Row="1" Height="1" Fill="#1E3A5F" VerticalAlignment="Bottom" Margin="0,20,0,0"/>
+
+                                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel>
+                                        <ItemsControl>
+                                            <ItemsControl.Items>
+                                                <local:IOItem No="OUT2-1"  Name="Output 2-1"  IsOn="True"/>
+                                                <local:IOItem No="OUT2-2"  Name="Output 2-2"  IsOn="False"/>
+                                                <local:IOItem No="OUT2-3"  Name="Output 2-3"  IsOn="True"/>
+                                                <local:IOItem No="OUT2-4"  Name="Output 2-4"  IsOn="False"/>
+                                                <local:IOItem No="OUT2-5"  Name="Output 2-5"  IsOn="True"/>
+                                                <local:IOItem No="OUT2-6"  Name="Output 2-6"  IsOn="False"/>
+                                                <local:IOItem No="OUT2-7"  Name="Output 2-7"  IsOn="True"/>
+                                                <local:IOItem No="OUT2-8"  Name="Output 2-8"  IsOn="False"/>
+                                                <local:IOItem No="OUT2-9"  Name="Output 2-9"  IsOn="True"/>
+                                                <local:IOItem No="OUT2-10" Name="Output 2-10" IsOn="False"/>
+                                                <local:IOItem No="OUT2-11" Name="Output 2-11" IsOn="True"/>
+                                                <local:IOItem No="OUT2-12" Name="Output 2-12" IsOn="False"/>
+                                                <local:IOItem No="OUT2-13" Name="Output 2-13" IsOn="True"/>
+                                                <local:IOItem No="OUT2-14" Name="Output 2-14" IsOn="False"/>
+                                                <local:IOItem No="OUT2-15" Name="Output 2-15" IsOn="True"/>
+                                                <local:IOItem No="OUT2-16" Name="Output 2-16" IsOn="False"/>
+                                            </ItemsControl.Items>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="0,1">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="70"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="65"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="{Binding No}"
+                                                                   Foreground="White" FontSize="20" VerticalAlignment="Center" Padding="0,6"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Name}"
+                                                                   Foreground="White" FontSize="20" VerticalAlignment="Center"/>
+                                                        <Button Grid.Column="2"
+        Width="25" Height="25"
+        HorizontalAlignment="Center" VerticalAlignment="Center"
+        Background="Transparent" BorderThickness="0"
+        Cursor="Hand"
+        Tag="{Binding}"
+        Click="IOStatus_Click">
+                                                            <Button.Template>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <Ellipse Width="25" Height="25">
+                                                                        <Ellipse.Style>
+                                                                            <Style TargetType="Ellipse">
+                                                                                <Setter Property="Fill" Value="Red"/>
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding IsOn}" Value="True">
+                                                                                        <Setter Property="Fill" Value="LimeGreen"/>
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </Ellipse.Style>
+                                                                    </Ellipse>
+                                                                </ControlTemplate>
+                                                            </Button.Template>
+                                                        </Button>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

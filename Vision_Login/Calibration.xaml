@@ -1,0 +1,458 @@
+﻿<Window x:Class="Vision_Login.Calibration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Calibration"
+        Width="1000"
+        Height="650"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="#101114">
+
+    <Grid>
+
+        <!-- Main Border -->
+        <Border Width="1000"
+                Height="650"
+                Background="#1B1D22"
+                BorderBrush="#35383F"
+                BorderThickness="1"
+                CornerRadius="8"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <Grid Margin="20">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- HEADER -->
+                <Grid Grid.Row="0">
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="&#xED5E;" FontFamily="Segoe MDL2 Assets"
+Foreground="White" FontSize="25" VerticalAlignment="Center" Margin="8,0,10,0"/>
+                        <TextBlock Text="CALIBRATION" Foreground="White"
+FontSize="25" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,24,0"/>
+                    </StackPanel>
+
+                    <Button Width="40"
+                            Height="40"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="#808080"
+                            FontSize="26"
+                            Click="BtnClose_Click"
+                            Content="✕"/>
+                </Grid>
+
+                <!-- BODY -->
+                <Grid Grid.Row="1"
+                      Margin="0,10,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="230"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- LEFT -->
+                    <Border Grid.Column="0"
+                            Background="#181A1F"
+                            BorderBrush="#2F3238"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Margin="0,0,10,0">
+
+                        <Grid Margin="12">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="150"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="TEACHING BOX"
+                                       Foreground="#4DA3FF"
+                                       FontSize="17"
+                                       FontWeight="SemiBold"/>
+
+                            <!-- Calibration Box -->
+                            <Border Grid.Row="1"
+                                    Margin="0,15,0,0"
+                                    Width="120"
+                                    Height="80"
+                                    BorderBrush="#4DA3FF"
+                                    BorderThickness="1"
+                                    CornerRadius="4"
+                                    HorizontalAlignment="Center">
+
+                                <StackPanel VerticalAlignment="Center">
+
+                                    <TextBlock FontFamily="Segoe MDL2 Assets"
+                                               Text="&#xED5E;"
+                                               Foreground="#4DA3FF"
+                                               FontSize="25"
+                                               HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="Calibration"
+                                               Foreground="White"
+                                               FontSize="22"
+                                               Margin="0,10,0,0"
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- SAVE -->
+                            <Button Grid.Row="9"
+        Height="60"
+        Margin="0,10,0,0"
+        Background="#2E5BFF"
+        BorderThickness="0"
+        Foreground="White"
+        FontSize="25"
+        FontWeight="SemiBold"
+        VerticalAlignment="Bottom">
+
+                                <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                                    <TextBlock FontFamily="Segoe MDL2 Assets"
+                   Text="&#xE74E;"
+                   FontSize="25"
+                   Margin="0,0,10,0"
+                   VerticalAlignment="Center"/>
+
+                                    <TextBlock Text="Save"
+                   VerticalAlignment="Center"/>
+
+                                </StackPanel>
+
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                    <!-- CENTER IMAGE -->
+                    <Border Grid.Column="1"
+                            Background="#16181C"
+                            BorderBrush="#2F3238"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Margin="0,0,10,0">
+
+                        <Grid>
+
+                            <Image Stretch="Fill"
+                                   Source="/Image/sample.png"/>
+
+                            <!-- Measure Line -->
+                            <Canvas>
+
+                                <Line X1="70"
+                                      Y1="280"
+                                      X2="500"
+                                      Y2="280"
+                                      Stroke="#59D83A"
+                                      StrokeThickness="3"/>
+
+                                <Ellipse Width="14"
+                                         Height="14"
+                                         Fill="#59D83A"
+                                         Canvas.Left="63"
+                                         Canvas.Top="273"/>
+
+                                <Ellipse Width="14"
+                                         Height="14"
+                                         Fill="#59D83A"
+                                         Canvas.Left="493"
+                                         Canvas.Top="273"/>
+
+                                <TextBlock Text="P1"
+                                           Foreground="#59D83A"
+                                           FontSize="20"
+                                           Canvas.Left="58"
+                                           Canvas.Top="295"/>
+
+                                <TextBlock Text="P2"
+                                           Foreground="#59D83A"
+                                           FontSize="20"
+                                           Canvas.Left="480"
+                                           Canvas.Top="295"/>
+
+                                <TextBlock Text="15.00000 mm"
+                                           Foreground="#59D83A"
+                                           FontSize="24"
+                                           FontWeight="Bold"
+                                           Canvas.Left="230"
+                                           Canvas.Top="300"/>
+
+                            </Canvas>
+
+                        </Grid>
+                    </Border>
+
+                    <!-- RIGHT -->
+                    <Border Grid.Column="2"
+                            Background="#181A1F"
+                            BorderBrush="#2F3238"
+                            BorderThickness="1"
+                            CornerRadius="5">
+
+                        <Grid Margin="15">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- CAM -->
+                            <TextBlock Text="CAM 설정"
+                                       Foreground="#4DA3FF"
+                                       FontSize="20"
+                                       FontWeight="SemiBold"/>
+
+                            <Grid Grid.Row="1"
+      Margin="0,15,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- CAM TEXT -->
+                                <TextBlock Grid.Column="0"
+               Text="CAM"
+               Foreground="White"
+               FontSize="20"
+               VerticalAlignment="Center"/>
+
+                                <!-- COMBOBOX -->
+                                <ComboBox Grid.Column="1"
+              Height="40"
+              Background="#111317"
+              Foreground="White"
+              BorderBrush="#2D3138"
+              BorderThickness="1"
+              FontSize="20"
+              Padding="10,0,35,0"
+              SelectedIndex="0">
+
+                                    <ComboBoxItem Content="CAM1"/>
+                                    <ComboBoxItem Content="CAM2"/>
+                                    <ComboBoxItem Content="CAM3"/>
+                                    <ComboBoxItem Content="CAM4"/>
+                                    <ComboBoxItem Content="CAM5"/>
+                                    <ComboBoxItem Content="CAM6"/>
+                                    <ComboBoxItem Content="CAM7"/>
+                                    <ComboBoxItem Content="CAM8"/>
+
+                                    <ComboBox.Resources>
+
+                                        <!-- ComboBoxItem -->
+                                        <Style TargetType="ComboBoxItem">
+
+                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="Background" Value="#111317"/>
+                                            <Setter Property="Padding" Value="10,6"/>
+                                            <Setter Property="FontSize" Value="15"/>
+
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+
+                                                    <ControlTemplate TargetType="ComboBoxItem">
+
+                                                        <Border x:Name="Bd"
+                                    Background="{TemplateBinding Background}">
+
+                                                            <ContentPresenter Margin="5,2"/>
+
+                                                        </Border>
+
+                                                        <ControlTemplate.Triggers>
+
+                                                            <Trigger Property="IsHighlighted"
+                                         Value="True">
+
+                                                                <Setter TargetName="Bd"
+                                            Property="Background"
+                                            Value="#2E5BFF"/>
+
+                                                            </Trigger>
+
+                                                        </ControlTemplate.Triggers>
+
+                                                    </ControlTemplate>
+
+                                                </Setter.Value>
+                                            </Setter>
+
+                                        </Style>
+
+                                    </ComboBox.Resources>
+
+                                    <!-- Custom Style -->
+                                    <ComboBox.Template>
+
+                                        <ControlTemplate TargetType="ComboBox">
+
+                                            <Grid>
+
+                                                <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+
+                                                    <Grid>
+
+                                                        <ContentPresenter Margin="10,0,35,0"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left"/>
+
+                                                        <!-- Arrow -->
+                                                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE70D;"
+                                       FontSize="12"
+                                       Foreground="White"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,12,0"/>
+
+                                                    </Grid>
+
+                                                </Border>
+
+                                                <ToggleButton Background="Transparent"
+                                  BorderThickness="0"
+                                  Focusable="False"
+                                  IsChecked="{Binding IsDropDownOpen,
+                                  RelativeSource={RelativeSource TemplatedParent},
+                                  Mode=TwoWay}"/>
+
+                                                <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
+                           Placement="Bottom"
+                           Focusable="False"
+                           AllowsTransparency="True"
+                           PopupAnimation="Fade">
+
+                                                    <Border Background="#111317"
+                                BorderBrush="#2D3138"
+                                BorderThickness="1"
+                                CornerRadius="4"
+                                Margin="0,5,0,0">
+
+                                                        <ScrollViewer>
+
+                                                            <StackPanel IsItemsHost="True"/>
+
+                                                        </ScrollViewer>
+
+                                                    </Border>
+
+                                                </Popup>
+
+                                            </Grid>
+
+                                        </ControlTemplate>
+
+                                    </ComboBox.Template>
+
+                                </ComboBox>
+
+                            </Grid>
+
+                            <!-- Distance -->
+                            <TextBlock Grid.Row="3"
+                                       Text="설정 거리 (mm)"
+                                       Foreground="#4DA3FF"
+                                       FontSize="20"
+                                       FontWeight="SemiBold"/>
+
+                            <StackPanel Grid.Row="4"
+                                        Margin="0,10,0,0">
+
+                                <TextBlock Text="Set Distance X"
+                                           Foreground="White"
+                                           FontSize="20"/>
+
+                                <TextBox Height="40"
+                                         Margin="0,8,0,15"
+                                         Background="#101114"
+                                         BorderBrush="#30333A"
+                                         Foreground="White"
+                                         FontSize="20"
+                                         Text="15.00000"/>
+
+                                <TextBlock Text="Set Distance Y"
+                                           Foreground="White"
+                                           FontSize="20"/>
+
+                                <TextBox Height="40"
+                                         Margin="0,8,0,0"
+                                         Background="#101114"
+                                         BorderBrush="#30333A"
+                                         Foreground="White"
+                                         FontSize="20"
+                                         Text="15.00000"/>
+
+                            </StackPanel>
+
+                            <!-- Calibration -->
+                            <TextBlock Grid.Row="6"
+                                       Text="보정 값 (mm/pixel)"
+                                       Foreground="#4DA3FF"
+                                       FontSize="20"
+                                       FontWeight="SemiBold"/>
+
+                            <StackPanel Grid.Row="7"
+                                        Margin="0,10,0,0">
+
+                                <TextBlock Text="Calibration X"
+                                           Foreground="White"
+                                           FontSize="20"/>
+
+                                <TextBox Height="40"
+                                         Margin="0,8,0,15"
+                                         Background="#101114"
+                                         BorderBrush="#30333A"
+                                         Foreground="White"
+                                         FontSize="20"
+                                         Text="0.007583"/>
+
+                                <TextBlock Text="Calibration Y"
+                                           Foreground="White"
+                                           FontSize="20"/>
+
+                                <TextBox Height="40 "
+                                         Margin="0,8,0,0"
+                                         Background="#101114"
+                                         BorderBrush="#30333A"
+                                         Foreground="White"
+                                         FontSize="20"
+                                         Text="0.007583"/>
+
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

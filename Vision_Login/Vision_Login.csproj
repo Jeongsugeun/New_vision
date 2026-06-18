@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>New_Vision</AssemblyName>
+    <ApplicationIcon>res\vision.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Main.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="res\vision.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="10.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MultiCam_NetApi">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Euresys\MultiCam\Clr\x86_64\MultiCam_NetApi.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Main.jpg" />
+  </ItemGroup>
+
+</Project>
